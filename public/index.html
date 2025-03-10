@@ -20,6 +20,13 @@
         socket.on('mensaje',function(mensaje){
             console.log('Escuchando:',mensaje);
         });
+        socket.on('nuevo-mensaje', function(data) {
+            console.log('Mensaje de Flutter:', data);
+        });
+        socket.on('active-bands', function(bandas) {
+            console.clear();
+            console.table( bandas);
+        });
     </script>
     <h1>Acceso denegado</h1>
 </body>

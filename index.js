@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 const path = require('path');
 require('dotenv').config();
+//dbconfig
+require('./database/config.js').dbConnection();
+
 
 // Node server
 const server = require('http').createServer(app);
@@ -14,6 +18,8 @@ require('./sockets/socket');
 // Path público
 const publicPath = path.resolve(__dirname, './public');
 app.use(express.static(publicPath));
+//mis rutas
+app.use('/api/login', require('./routes/auth'));
 
 server.listen(process.env.PORT, (err) => {
     if (err) throw new Error(err);
