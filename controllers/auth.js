@@ -79,9 +79,17 @@ const renewToken = async(req, res = response) => {
         token
     });
 }
+const obtenerU = async (req, res = response) => {
+    const usuarios = await Usuario.find({}, 'nombre email online').sort('-online'); // Incluye el campo online
+    res.json({
+        ok: true,
+        usuarios
+    });
+};
 
 module.exports = {
     crearUsuario,
     login,
-    renewToken
+    renewToken,
+    obtenerU
 }
